@@ -16,10 +16,11 @@ def get_map(type, rooms, size):
         for y in range(size):
             map.append(1)
     
-    carving = walk(size//2, size//2, size, 30)
+    for agent in range(3):
+        carving = walk(size//2, size//2, size, 200)
 
-    for pos in carving:
-        map[pos[0] + pos[1] * size] = 0
+        for pos in carving:
+            map[pos[0] + pos[1] * size] = 0
     
     return map
     
@@ -29,7 +30,7 @@ def walk(startx, starty, size, walk_distance):
     x, y = startx, starty
     carving = [(x, y)]
     for step in range(walk_distance):
-        dir = directions[random.randrange(0, 3)]
+        dir = directions[random.randrange(0, 4)]
 
         x += dir[0]
         y += dir[1]

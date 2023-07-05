@@ -19,7 +19,7 @@ drawLength = int(winSize[0]/5)
 gridSizex = winSize[0]/drawLength
 gridSizey = winSize[1]/drawLength
 
-mapSize = 50
+mapSize = 30
 gridSize = winSize[1]/mapSize
 
 run = True
@@ -31,6 +31,8 @@ def get_frame_array(map):
     for x in range(mapSize):
         for y in range(mapSize):
             if map[x + y * mapSize]:
+                frame[x][y] = [0, 0, 0]
+            else:
                 frame[x][y] = [.5, .5, .5]
 
     #for x in range(drawLength):
@@ -41,16 +43,9 @@ def get_frame_array(map):
 def draw():
     frame = get_frame_array(map)
 
-    #surf = pygame.surfarray.make_surface(frame*255)
-    #frame_texture = Texture.from_surface(renderer, surf)
-    #frame_texture.draw()
-
-    renderer.draw_color = (25, 25, 25, 255)
-
-    for x in range(mapSize):
-        for y in range(mapSize):
-            if map[x + y * mapSize]:
-                renderer.fill_rect((x * gridSize, y * gridSize, gridSize - 1, gridSize - 1))
+    surf = pygame.surfarray.make_surface(frame*255)
+    frame_texture = Texture.from_surface(renderer, surf)
+    frame_texture.draw()
 
     renderer.present()
 
