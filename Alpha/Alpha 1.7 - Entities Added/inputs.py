@@ -4,6 +4,7 @@ import random
 from projectile import *
 from entity import *
 from weapons import *
+from entityData import *
 
 e_up = True
 
@@ -24,7 +25,7 @@ def handle_inputs(keys, map, player_character, cam, dt):
 
     if keys[pygame.K_e]:
         if e_up:
-            entities.append(Entity(player_character.x, player_character.y, 0, 1, 1, 2, (0, 155, 0, 255), 5))
+            entities.append(Entity(player_character.x, player_character.y, 0, entity_data["zombie"]))
             e_up = False
     else:
         e_up = True

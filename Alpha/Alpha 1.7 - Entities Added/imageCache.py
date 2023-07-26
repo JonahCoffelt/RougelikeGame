@@ -31,19 +31,19 @@ class ImageCache():
 
         # Square outline
         self.square_surf = pygame.Surface((100, 100), pygame.SRCALPHA)
-        pygame.draw.rect(self.square_surf, (255, 255, 255), (0, 0, 100, 100), 2)
+        pygame.draw.rect(self.square_surf, (255, 255, 255), (0, 0, 100, 100), 3)
         self.square_text = Texture.from_surface(self.renderer, self.square_surf)
         self.square_image = Image(self.square_text)
 
         # Circle outline
         self.circle_surf = pygame.Surface((50, 50), pygame.SRCALPHA)
-        pygame.draw.circle(self.circle_surf, (255, 255, 255), (25, 25), 25, 1)
+        pygame.draw.circle(self.circle_surf, (255, 255, 255), (25, 25), 25, 3)
         self.circle_text = Texture.from_surface(self.renderer, self.circle_surf)
         self.circle_image = Image(self.circle_text)
 
         # Polygon outline
         self.polygon_surf = pygame.Surface((50, 50), pygame.SRCALPHA)
-        pygame.draw.polygon(self.polygon_surf, (255, 255, 255), ((25, 0), (14, 15), (25, 50), (36, 15)), 1)
+        pygame.draw.polygon(self.polygon_surf, (255, 255, 255), ((25, 0), (14, 15), (25, 50), (36, 15)), 2)
         self.polygon_text = Texture.from_surface(self.renderer, self.polygon_surf)
         self.polygon_image = Image(self.polygon_text)
 

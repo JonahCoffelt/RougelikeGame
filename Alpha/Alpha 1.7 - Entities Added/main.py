@@ -9,9 +9,10 @@ from player import Player
 from camera import Camera
 from spriteSheet import process_image_sheets, images
 from tileRules import *
-from particles import *
+from particle import *
 from imageCache import *
 from entity import *
+from item import *
 from inputs import handle_inputs
 
 clock = pygame.time.Clock()
@@ -21,7 +22,7 @@ win = Window(title="pygame", size=winSize, resizable=True)
 renderer = Renderer(win)
 
 mapSize = 150 #Width/Height of map array
-fov = 20 #Number of tiles displayed on screen
+fov = 60 #Number of tiles displayed on screen
 gridSize = winSize[0]//fov #Pixel lenght/width of tiles
 
 player_character = Player(20, 20) #Initialize player
@@ -57,15 +58,16 @@ def draw():
 
 def update():
     cam.move(fov+1, mapSize, dt) # Moves camera towards the player
-    player_character.dir = -math.atan2((mousey - winSize[1]/2), (mousex - winSize[0]/2))
+    player_character.dir = -math.atan2((mousey - (winSize[1]/2 + (player_character.y - cam.y) * gridSize)), (mousex - (winSize[0]/2 + (player_character.x - cam.x) * gridSize)))
     if player_character.fire_time < weapons[player_character.equiped][6]:
         player_character.fire_time += dt
     
     draw() # Draws map and player to renderer
     
     update_particles(renderer, image_cache, winSize, gridSize, cam.x, cam.y, dt) # Updates particle position and draws to renderer
-    update_entities(renderer, map, winSize, gridSize, cam, image_cache, dt) # Updates entity position and draws to renderer
-    update_projectiles(renderer, map, winSize, gridSize, cam, image_cache, entities, dt) # Updates projectile position and draws to renderer
+    update_entities(renderer, map, winSize, gridSize, cam, player_character, image_cache, dt) # Updates entity position and draws to renderer
+    update_projectiles(renderer, map, winSize, gridSize, cam, image_cache, dt) # Updates projectile position and draws to renderer
+    update_items(renderer, cam, player_character, image_cache, gridSize, winSize, dt)
 
     renderer.present()
     

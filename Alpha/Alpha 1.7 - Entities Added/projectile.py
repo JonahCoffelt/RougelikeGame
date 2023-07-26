@@ -1,6 +1,6 @@
 import pygame
 import numpy as np
-from particles import make_particles
+from particle import make_particles
 
 projectiles = []
 
@@ -34,7 +34,7 @@ class bullet():
         self.life += dt
     
 
-def update_projectiles(renderer, map, winSize, gridSize, cam, image_cache, entities, dt):
+def update_projectiles(renderer, map, winSize, gridSize, cam, image_cache, dt):
     global projectiles
     for projectile in projectiles:
         # Moves parojectile

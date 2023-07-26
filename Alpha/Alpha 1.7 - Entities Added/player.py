@@ -4,11 +4,14 @@ class Player():
     def __init__(self, posx, posy):
         self.x = posx
         self.y = posy
+        self.width = .75
+        self.height = .75
         self.speed = .007
         self.dir = 0
         self.width = .8
         self.equiped = 0
         self.fire_time = 0
+        self.pickup_range = 4
     
     def move(self, x, y, dt, map):
         multiplier = 1
